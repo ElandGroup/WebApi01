@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#restSharp").on("click", function () {
+            $.post('@Url.Action("GetFruit", "TestApi")', "", function (data) {
+                var returnValue = JSON.stringify(data);
+                $("#lblMessage").val(returnValue);
+
+            });
+        });
+
+        $("#jsFruit").on("click", function () {
+            var data = { Name: "liu2" };
+            $.post('http://localhost:169/api/v1/fruit/agentfruit', data, function (data) {
+                var returnValue = JSON.stringify(data);
+                $("#lblMessage").val(returnValue);
+
+            });
+        });
+    });
+</script>
+
+<h2>Index</h2>
+<input type="button" id="restSharp" value="RestSharp" />
+<input type="button" id="jsFruit" value="JavaScriptFruit" />
+<textarea class="form-control" id="lblMessage" placeholder="result" 
+          style="height: 500px; width:400px; border: 1px solid #31b0d5;margin-top:10px; display:block;padding-top:5px;">
+</textarea>
